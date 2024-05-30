@@ -42,7 +42,7 @@ public class InitializingCustomerBase {
         }
     }
     public static void readCustomersFromFile() throws Exception {
-        String fileName = "E:\\TestProjectJava\\src\\org\\application\\bank_db.txt";
+        String fileName = "E:\\BankingApplicationProject\\src\\org\\application\\bank_db.txt";
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
         while ((line = reader.readLine()) != null) {

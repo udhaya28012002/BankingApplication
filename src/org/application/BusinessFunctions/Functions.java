@@ -1,11 +1,13 @@
 package org.application.BusinessFunctions;
 
+import com.sun.org.apache.xml.internal.security.Init;
 import org.application.InitializingCustomers.InitializingCustomerBase;
+import org.application.TransactionDetail.TransactionDetails;
 import org.application.customerPrivilages.CustomerInterface;
 
-import java.util.Date;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+
+import org.application.AllBankingServices.BankingServices;
 
 public class Functions {
     public String generateCusID(){
@@ -269,6 +271,45 @@ public class Functions {
                         }
                     }
             }
+        }
+        return val;
+    }
+
+    public void operationalFee(CustomerInterface cus, Double transactionAmt){
+        if(transactionAmt > 5000.00){
+            cus.setBalance(cus.getBalance()-10);
+            TransactionDetails tdFrom = new TransactionDetails(cus.getName(),cus.getAccountNumber(), cus.getCustomerId(),(int)(Math.random() * (999990 - 100000 + 1)+ 100000)+"","Operational Fee",10.00,cus.getBalance());
+            BankingServices.transactionDetails.add(tdFrom);
+        }
+    }
+
+    public void maintenanceFee(CustomerInterface cus){
+        if(cus.getTransactionCount() > 10){
+            cus.setBalance(cus.getBalance()-100);
+            TransactionDetails tdTo = new TransactionDetails(cus.getName(),cus.getAccountNumber(), cus.getCustomerId(),(int)(Math.random() * (999990 - 100000 + 1)+ 100000)+"","Maintenance Fee",100.00,cus.getBalance());
+            BankingServices.transactionDetails.add(tdTo);
+        }
+    }
+
+    public boolean topNCustomers(CustomerInterface cust){
+        boolean val = false;
+        String[] topNCus = new String[3];
+        ArrayList<String> tempList = new ArrayList<>();
+        for(CustomerInterface cus : InitializingCustomerBase.customers){
+            tempList.add(cus.getCustomerId() + "_" + cus.getBalance());
+        }
+        Collections.sort(tempList);
+        String val1 = tempList.get(tempList.size()-1);
+        topNCus[0] = val1.substring(val1.indexOf('_')+1);
+        String val2 = tempList.get(tempList.size()-2);
+        topNCus[1] = val1.substring(val2.indexOf('_')+1);
+        String val3 = tempList.get(tempList.size()-3);
+        topNCus[2] = val1.substring(val3.indexOf('_')+1);
+        tempList.clear();
+        System.out.println(Arrays.toString(topNCus));
+        String custId = cust.getCustomerId();
+        if(custId.equals(topNCus[0]) || custId.equals(topNCus[1]) || cust.equals(topNCus[2])){
+            val = true;
         }
         return val;
     }

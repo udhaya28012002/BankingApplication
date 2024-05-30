@@ -22,6 +22,9 @@ public class BankingServices {
                 cus.setBalance(cus.getBalance()+amt);
                 TransactionDetails td = new TransactionDetails(cus.getName(),cus.getAccountNumber(), cus.getCustomerId(),(int)(Math.random() * (999990 - 100000 + 1)+ 100000)+"","CashDeposit",amt,cus.getBalance());
                 transactionDetails.add(td);
+                if(!fun.topNCustomers(cus)){
+                    fun.maintenanceFee(cus);
+                }
                 System.out.println("Current Balance amount is : "+cus.getBalance());
             }
         }
@@ -38,6 +41,9 @@ public class BankingServices {
                     cus.setBalance(cus.getBalance()-amt);
                     TransactionDetails td = new TransactionDetails(cus.getName(),cus.getAccountNumber(), cus.getCustomerId(),(int)(Math.random() * (999990 - 100000 + 1)+ 100000)+"","ATMWithdrawl",amt,cus.getBalance());
                     transactionDetails.add(td);
+                    if(!fun.topNCustomers(cus)){
+                        fun.maintenanceFee(cus);
+                    }
                     System.out.println("Current Balance amount is : "+cus.getBalance());
                 }
             }
@@ -62,16 +68,20 @@ public class BankingServices {
                             transactionDetails.add(tdTo);
                             TransactionDetails tdFrom = new TransactionDetails(benCus.getName(),benCus.getAccountNumber(), benCus.getCustomerId(),(int)(Math.random() * (999990 - 100000 + 1)+ 100000)+"","TransferFrom "+cus.getAccountNumber(),amtToBeSent,benCus.getBalance());
                             transactionDetails.add(tdFrom);
+                            fun.operationalFee(cus,amtToBeSent);
                             System.out.println("Amount sent successfully");
+                            if(!fun.topNCustomers(cus)){
+                                fun.maintenanceFee(cus);
+                            }
                             System.out.println("Current Balance amount is : "+cus.getBalance());
+                            break;
                         }
                         else{
                             System.out.println("Insufficient Balance!");
+                            break;
                         }
                     }
-                    else {
-                        System.out.println("There is no account mapped to the given number!");
-                    }
+
                 }
             }
         }
