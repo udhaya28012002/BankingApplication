@@ -3,9 +3,9 @@ package org.application.customerPrivilages;
 import java.util.LinkedList;
 
 class Customer implements CustomerInterface{
-        private String customerId;
-        private String accountNumber;
-        private String name;
+        private final String customerId;
+        private final String accountNumber;
+        private final String name;
         private double balance;
         private String encryptedPwd;
 
@@ -17,7 +17,7 @@ class Customer implements CustomerInterface{
         this.transactionCount = transactionCount;
     }
 
-    private int transactionCount = 0;
+    private int transactionCount;
 
 
 

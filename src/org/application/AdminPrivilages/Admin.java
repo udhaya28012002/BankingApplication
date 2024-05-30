@@ -1,9 +1,8 @@
 package org.application.AdminPrivilages;
 
-import java.util.ArrayList;
 
 public class Admin {
-    private String userName;
+    private final String userName;
     private String pass;
 
 

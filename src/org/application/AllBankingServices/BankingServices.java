@@ -58,7 +58,7 @@ public class BankingServices {
                 System.out.println("Please enter the Beneficiary account number : ");
                 String receiverAccNo = sc.next();
                 System.out.println("Please enter the amount to be send          : ");
-                Double amtToBeSent = sc.nextDouble();
+                double amtToBeSent = sc.nextDouble();
                 for(CustomerInterface benCus : InitializingCustomerBase.customers){
                     if(benCus.getAccountNumber().equals(receiverAccNo)){
                         if(cus.getBalance() >= amtToBeSent){
@@ -74,12 +74,11 @@ public class BankingServices {
                                 fun.maintenanceFee(cus);
                             }
                             System.out.println("Current Balance amount is : "+cus.getBalance());
-                            break;
                         }
                         else{
                             System.out.println("Insufficient Balance!");
-                            break;
                         }
+                        break;
                     }
 
                 }
@@ -88,7 +87,6 @@ public class BankingServices {
     }
 
     public void statement(String cusId, String pass){
-        Scanner sc = new Scanner(System.in);
         Functions fun = new Functions();
         for(CustomerInterface cus : InitializingCustomerBase.customers){
             if(cus.getCustomerId().equals(cusId) && pass.equals(fun.decryptinPass(cus.getEncryptedPwd()))){

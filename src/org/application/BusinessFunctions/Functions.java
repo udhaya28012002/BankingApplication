@@ -1,6 +1,5 @@
 package org.application.BusinessFunctions;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import org.application.InitializingCustomers.InitializingCustomerBase;
 import org.application.TransactionDetail.TransactionDetails;
 import org.application.customerPrivilages.CustomerInterface;
@@ -14,7 +13,7 @@ public class Functions {
         boolean val = false;
         String cusId = new java.util.Random().nextInt(90)+10+"";
         for(CustomerInterface customerId : InitializingCustomerBase.customers){
-            if(customerId.getCustomerId()==cusId){
+            if(Objects.equals(customerId.getCustomerId(), cusId)){
                 val = true;
                 break;
             }
@@ -308,7 +307,7 @@ public class Functions {
         tempList.clear();
         System.out.println(Arrays.toString(topNCus));
         String custId = cust.getCustomerId();
-        if(custId.equals(topNCus[0]) || custId.equals(topNCus[1]) || cust.equals(topNCus[2])){
+        if(custId.equals(topNCus[0]) || custId.equals(topNCus[1]) || custId.equals(topNCus[2])){
             val = true;
         }
         return val;
