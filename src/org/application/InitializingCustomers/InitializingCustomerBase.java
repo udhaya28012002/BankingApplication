@@ -24,12 +24,13 @@ public class InitializingCustomerBase {
     }
 
     public static void initializingNewCustomers(){
-        String nameOfTheCustomer = "", passwordNeedToSet="", retypeThePass="";
+        String nameOfTheCustomer = "";
+        String passwordNeedToSet = "";
         System.out.println("Please enter the below details to process further....");
         System.out.println("Please enter your full name : ");
         nameOfTheCustomer = new Scanner(System.in).next();
         Functions fun = new Functions();
-        if(!fun.passwordComplexity().contains("false")) {
+        if(!Functions.passwordComplexity().contains("false")) {
             InitializingCustomerBase.initializingNewCustomers();
         }
         else {

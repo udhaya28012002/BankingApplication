@@ -17,10 +17,7 @@ public class AdminRights {
     }
     public boolean adminLogin(String userName, String pass){
         Functions fun = new Functions();
-        boolean val = false;
-        if(userName.equals(adminList.get(0).getUserName()) && pass.equals(fun.decryptinPass(adminList.get(0).getPass()))){
-            val = true;
-        }
+        boolean val = userName.equals(adminList.get(0).getUserName()) && pass.equals(fun.decryptinPass(adminList.get(0).getPass()));
         return val;
     }
 

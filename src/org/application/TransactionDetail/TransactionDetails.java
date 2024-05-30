@@ -4,13 +4,13 @@ import org.application.InitializingCustomers.InitializingCustomerBase;
 import org.application.customerPrivilages.CustomerInterface;
 
 public class TransactionDetails {
-    private String name;
-    private String accNo;
-    private String cusId;
-    private String transactionId;
-    private String transType;
-    private Double amount;
-    private Double balance;
+    private final String name;
+    private final String accNo;
+    private final String cusId;
+    private final String transactionId;
+    private final String transType;
+    private final Double amount;
+    private final Double balance;
 
     public  TransactionDetails(String name, String accNo, String cusId, String transactionId, String transType, Double amount, Double balance){
         this.name = name;

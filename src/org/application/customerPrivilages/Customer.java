@@ -21,7 +21,7 @@ class Customer implements CustomerInterface{
 
 
 
-    private java.util.LinkedList<String> previousPassList;
+    private final java.util.LinkedList<String> previousPassList;
 
         /*
         This is the constructor which will holds all the details of single individual customer.
